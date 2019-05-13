@@ -30,5 +30,5 @@ define function synthesis with inputs dataset and desired repetitions {
 }
 
 apply function synthesis on selected dataset with desired repetitions
-(draw equally sized samples from all repetitions until original length of dataset is reached
-	and assign result to new synthesized dataset)
+draw equally sized samples from all repetitions until original length of dataset is reached
+	and assign result to new synthesized dataset
