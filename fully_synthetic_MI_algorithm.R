@@ -1,6 +1,5 @@
 # Introduction ------------------------------------------------------------
 
-# In this chapter the actual algorithm is programmed.
 # It is coded such, that partial AND fully synthetic MI is possible.
 # The trees are chosen such like in JASA. The pruning parameters
 # are sometimes different. In the categorial case rpart instead of tree
@@ -117,16 +116,6 @@ syntheis <- function(df, repetitions){
   
 }
 
-
-
-# Application of function -------------------------------------------------
-
-# load our fictive census
-load("data_census.RData")
-# apply algorithm
-synthetic_data <- syntheis(data_census, 5)
-# save results
-save(synthetic_data, file = "synthetic_data.RData")
 
 
 
