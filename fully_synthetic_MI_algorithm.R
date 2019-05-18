@@ -1,10 +1,11 @@
 # Introduction ------------------------------------------------------------
 
 # It is coded such, that partial AND fully synthetic MI is possible.
-# The trees are chosen such like in JASA. The pruning parameters
-# are sometimes different. In the categorial case rpart instead of tree
-# is applied.
-# The sequence is not discussed. The first variable is always the reference.
+# The trees are chosen such like Drechsler and Reiter propose it in JASA. 
+# The pruning parameters are sometimes different. 
+# In the categorial case rpart instead of tree is applied.
+# The sequence is not discussed. 
+# The first variable is always the reference.
 # Sequencing is like occurance in the data frame.
 # The algorithm is programmed as general function, so application is universal.
 # Variable should be coded as factor or numeric (ordered factor suits, too).
@@ -19,7 +20,11 @@ setwd("")
 # Algorithm as function ---------------------------------------------------
 
 # a dataframe (df) and number of repetitions (repetitions) as input
-syntheis <- function(df, repetitions){
+# additionally: conditions can be imbedded,
+# must be a vector of the following manner:
+# e.g. conditions <- c("synthetic_data[[i]]$age <- round(synthetic_data[[i]]$age)")
+# and data_list (true: list of repetitions, false: one data frame) can be specified
+syntheis <- function(df, repetitions, conditions = NULL, data_list = TRUE){
   
   # define dependencies
   if(!require("tree")) install.packages("tree")
@@ -107,12 +112,35 @@ syntheis <- function(df, repetitions){
       
       # save the repetition in the list
       synthetic_data[[i]] <- df[,-(ncol(df))]
+      
     }
+    
+    # !!! here the restrictions are imbedded as optional parameter !!!
+    if (is.null(conditions)) {
+      next
+    } else {
+      for (n in (1:length(conditions))) {
+        eval(parse(text = conditions[n]))
+      }
+    }
+    # !!! above the restrictions are imbedded as optional parameter !!!
+    
   }
   
-  # only the list of the R dataframes which are sampled with synthesis
-  # should be returned
-  return(synthetic_data)
+  # if TRUE: the list of the dataframes should be returned
+  # else only one sampled dataframe is returned
+  if (data_list == TRUE) {
+    return(synthetic_data)
+  } else {
+    whole_data <- data.frame()
+    for (m in (1:length(synthetic_data))) {
+      whole_data <- rbind(whole_data, synthetic_data[[m]])
+    }
+    index <- sample(nrow(whole_data), 
+                    nrow(synthetic_data[[1]]),
+                    replace = F)
+    synthetic_data_frame <- whole_data[index,]
+  }
   
 }
 
