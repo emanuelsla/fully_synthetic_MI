@@ -2,7 +2,7 @@
 
 pseudo code for algorithm fully synthetic MI
 
-define function synthesis with inputs dataset and desired repetitions {
+define function synthesis with inputs: dataset, desired repetitions, condition vector, list option {
 	create storage for results in list structure
 	for all desired repetitions {
 		start with second variable
@@ -25,10 +25,14 @@ define function synthesis with inputs dataset and desired repetitions {
 			save bootstrapped variable in dataset
 			go to next variable
 		}
+		if no conditions {
+			next
+		} else {for all conditions {
+				apply them to recent dataframe
+			}
+		}
 	}
-	return synthetic data in list structure
+	if list structre {
+		return synthetic data in list structure
+	else return one dataframe as equal samples from all dataframes
 }
-
-apply function synthesis on selected dataset with desired repetitions
-draw equally sized samples from all repetitions until original length of dataset is reached
-	and assign result to new synthesized dataset
