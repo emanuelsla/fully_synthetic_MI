@@ -23,8 +23,9 @@ setwd("")
 # additionally: conditions can be imbedded,
 # must be a vector of the following manner:
 # e.g. conditions <- c("synthetic_data[[i]]$age <- round(synthetic_data[[i]]$age)")
-# and data_list (true: list of repetitions, false: one data frame) can be specified
-synthesis <- function(df, repetitions, conditions = NULL, data_list = TRUE){
+# and data_options ("list": all MI repetitions as list, 
+# "first_df": first MI repetiton as df, "sample": sample of all MI repetitons with inital length)
+synthesis <- function(df, repetitions, conditions = NULL, data_options = "list"){
   
   # define dependencies
   if(!require("tree")) install.packages("tree")
@@ -127,11 +128,14 @@ synthesis <- function(df, repetitions, conditions = NULL, data_list = TRUE){
     
   }
   
-  # if TRUE: the list of the dataframes should be returned
-  # else only one sampled dataframe is returned
-  if (data_list == TRUE) {
+  # list: all synthetic dataframe are returne as list
+  # fist_df: the first MI dataframe is returned
+  # sample: a random sample of all MI dataframe with inital nrow is returned
+  if (data_options == "list") {
     return(synthetic_data)
-  } else {
+  } else if (data_options == "first_df") {
+    return(synthetic_data[[1]])
+  } else  if (data_options == "sample"){
     whole_data <- data.frame()
     for (m in (1:length(synthetic_data))) {
       whole_data <- rbind(whole_data, synthetic_data[[m]])
