@@ -32,7 +32,11 @@ define function synthesis with inputs: dataset, desired repetitions, condition v
 			}
 		}
 	}
-	if list structre {
+	if list option {
 		return synthetic data in list structure
-	else return one dataframe as equal samples from all dataframes
+	} else if first datframe option {
+		return first dataframe
+	} else if sample option {
+		return sample of all dataframes with inital length
+	}
 }
