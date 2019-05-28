@@ -24,7 +24,7 @@ setwd("")
 # must be a vector of the following manner:
 # e.g. conditions <- c("synthetic_data[[i]]$age <- round(synthetic_data[[i]]$age)")
 # and data_list (true: list of repetitions, false: one data frame) can be specified
-syntheis <- function(df, repetitions, conditions = NULL, data_list = TRUE){
+synthesis <- function(df, repetitions, conditions = NULL, data_list = TRUE){
   
   # define dependencies
   if(!require("tree")) install.packages("tree")
