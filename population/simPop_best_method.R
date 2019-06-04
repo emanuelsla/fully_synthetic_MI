@@ -7,7 +7,7 @@
 # Setup -------------------------------------------------------------------
 
 rm(list = ls())
-setwd("C:/Users/Emanuel/fully_synthetic_MI/population")
+setwd("") # enter working directory here
 
 
 # Packages and dataframes -------------------------------------------------
