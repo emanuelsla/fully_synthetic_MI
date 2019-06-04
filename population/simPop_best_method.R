@@ -141,13 +141,17 @@ for (i in (1:length(storage))) {
 windows()
 par(mfrow=c(1,3))
 boxplot(df_census$household_inc, col = "tan1",
-        main = "gold standard - househ. income")
+        main = "gold standard - househ. income",
+        ylim = c(0,50000))
 boxplot(cont_vars$multinom$household_inc, col = "tan",
-        main = "multinom")
+        main = "multinom",
+        ylim = c(0,50000))
 boxplot(cont_vars$lm$household_inc, col = "tan",
-        main = "standard linear regression")
+        main = "standard linear regression",
+        ylim = c(0,50000))
 dev.off()
 
+# Again both methods perform nearly equal.
 # Because of this result we prefer again the method multinom
 # Therefore we finally update our s4 object 
 # by the multinom-procedure.
