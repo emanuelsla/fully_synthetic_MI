@@ -117,7 +117,7 @@ methods <- c("multinom", "lm")
 # create storage for optimaziton
 storage <- list()
 
-# for-loop to apply all available methods for simCategorical()
+# for-loop to apply all available methods for simContinuous()
 for (i in (1:length(methods))) {
   print(paste(c("start with method ", methods[i]), 
               sep = "", collapse = ""))
