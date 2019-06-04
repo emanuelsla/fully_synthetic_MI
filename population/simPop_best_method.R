@@ -164,3 +164,21 @@ data_syn_simPop_best <- data_syn_simPop_best[,-c("household_incCat",
 
 save(data_syn_simPop_best, file = "data_syn_simPop_best.RData")
 
+
+
+# Runtime estimation ------------------------------------------------------
+start_time <- Sys.time()
+inp <- specifyInput(df_census, hhid = "household_id", 
+                    strata = "region", population = F,
+                    weight = "weight") 
+data_sim <- simStructure(dataS = inp, method = "distribution",
+                         basicHHvars = c("gender", "age"))
+data_sim <- simCategorical(simPopObj = data_sim,
+                           additional = c("citizenship", "employement"),
+                           method = "multinom",
+                           verbose = F)
+data_sim <- simContinuous(simPopObj = data_sim,
+                          additional = "household_inc",
+                          method = "multinom", verbose = T)
+end_time <- Sys.time()
+end_time - start_time
