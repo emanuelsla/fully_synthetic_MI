@@ -25,7 +25,9 @@ setwd("")
 # e.g. conditions <- c("synthetic_data[[i]]$age <- round(synthetic_data[[i]]$age)")
 # and data_options ("list": all MI repetitions as list, 
 # "first_df": first MI repetiton as df, "sample": sample of all MI repetitons with inital length)
-synthesis <- function(df, repetitions, conditions = NULL, data_options = "list"){
+# further: pruning for tree and rpart can be specified with minsplit, minbucket, mindev and mincut
+synthesis <- function(df, repetitions, conditions = NULL, data_options = "list",
+                      minsplit = 5, minbucket = 10, mindev = 0.0001, mincut = 5){
   
   # define dependencies
   if(!require("tree")) install.packages("tree")
@@ -61,8 +63,8 @@ synthesis <- function(df, repetitions, conditions = NULL, data_options = "list")
         
         # fitting tree for numeric variables
         mytree <- tree(df[,var] ~ . , data = df[,-((var + 1) : ncol(df))], 
-                       split = "deviance" , mindev = 0.0001, 
-                       control = tree.control(nobs = nrow(df), mincut = 5),
+                       split = "deviance" , mindev = mindev, 
+                       control = tree.control(nobs = nrow(df), mincut = mincut),
                        model = T, x = T)
         
         # we grep the different buckets
@@ -85,7 +87,7 @@ synthesis <- function(df, repetitions, conditions = NULL, data_options = "list")
         mytree <- rpart(df[,var] ~ . , 
                         data = df[,-((var + 1) : ncol(df))],
                         method = "class",
-                        control = rpart.control(minsplit = 5, minbucket = 10))
+                        control = rpart.control(minsplit = minsplit, minbucket = minbucket))
         
         # grap the buckets
         where <- as.factor(mytree[["where"]])
@@ -147,8 +149,6 @@ synthesis <- function(df, repetitions, conditions = NULL, data_options = "list")
   }
   
 }
-
-
 
 
 
