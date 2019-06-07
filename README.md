@@ -2,7 +2,7 @@
 
 pseudo code for algorithm fully synthetic MI
 
-define function synthesis with inputs: dataset, desired repetitions, condition vector, list option {
+define function synthesis with inputs: dataset, desired repetitions, condition vector, list option, minsplit, minbucket, mindev and mincut{
 	create storage for results in list structure
 	for all desired repetitions {
 		start with second variable
