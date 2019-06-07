@@ -34,3 +34,5 @@ We apply the function "apply_MI.R" to create the dataframes
 This is the fully synthetic MI algortihms without and with
 additional conditions.
 
+At least we apply the script "result_evaluation.R" to generate
+the outputs, which can be found in the equally called folder.
