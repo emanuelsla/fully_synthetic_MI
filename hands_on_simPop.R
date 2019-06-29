@@ -18,7 +18,7 @@ data_sim <- simStructure(dataS = inp, method = "distribution",
                          basicHHvars = c("gender", "age"))
 
 data_sim <- simCategorical(simPopObj = data_sim,
-                           additional = c("citizenship", "employement"),
+                           additional = c("citizenship", "employment"),
                            method = "cforest",
                            verbose = T)
                           # strata is already defined as input
