@@ -19,7 +19,7 @@ save(data_syn_MI, file = "data_syn_MI.RData")
 # with conditions
 conds <- c("synthetic_data[[i]]$age <- round(synthetic_data[[i]]$age)",
            "synthetic_data[[i]]$household_inc[synthetic_data[[i]]$age < 16] <- 0",
-           "synthetic_data[[i]]$household_inc[synthetic_data[[i]]$employement == 'unemployed'] <- 0",
+           "synthetic_data[[i]]$household_inc[synthetic_data[[i]]$employment == 'unemployed'] <- 0",
            "for (id in (1:max(synthetic_data[[i]]$household_id))) {
              num <- nrow(synthetic_data[[i]][synthetic_data[[i]]$household_id == id,])
              synthetic_data[[i]]$household_size[synthetic_data[[i]]$household_id == id] <- num
@@ -39,7 +39,7 @@ save(data_syn_MI_conds, file = "data_syn_MI_conds.RData")
 # can be removed after evaluation
 
 # data_syn_MI$household_inc[data_syn_MI$age < 16] <- 0
-# data_syn_MI$household_inc[data_syn_MI$employement == "unemployed"] <- 0
+# data_syn_MI$household_inc[data_syn_MI$employment == "unemployed"] <- 0
 # 
 # for (id in (1:max(data_syn_MI$household_id))) {
 #   num <- nrow(data_syn_MI[data_syn_MI$household_id == id,])
