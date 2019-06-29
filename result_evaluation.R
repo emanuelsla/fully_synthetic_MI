@@ -30,21 +30,21 @@ load("data_syn_simPop_best.RData")
 # univariate properties
 
 # categorial data
-windows()
+jpeg(filename = "univariate_categorical_comp.jpeg", quality = 100)
 par(mfrow=c(4,1))
-barplot(table(df_census$employement), 
+barplot(table(df_census$employment), 
         main = "employment status \n \ngold standard - census",
         col = "goldenrod1")
-barplot(table(data_syn_simPop_best$employement), main = "simPop",
+barplot(table(data_syn_simPop_best$employment), main = "simPop",
         col = "darkolivegreen3")
-barplot(table(data_syn_MI$employement), main = "MI",
+barplot(table(data_syn_MI$employment), main = "MI",
         col = "dodgerblue4")
-barplot(table(data_syn_MI_conds$employement), main = "MI with conditions",
+barplot(table(data_syn_MI_conds$employment), main = "MI with conditions",
         col = "dodgerblue3")
 dev.off()
 
 # numerical data
-windows()
+jpeg(filename = "univariate_continuous_comp.jpeg", quality = 100)
 par(mfrow=c(2,2))
 boxplot(df_census$household_inc,
         main = "gold standard - census",
@@ -73,29 +73,29 @@ dev.off()
 
 
 # bivariate correlation
-windows()
+jpeg(filename = "multivariate_comp.jpeg", quality = 100)
 par(mfrow=c(2,2))
 boxplot(df_census$household_inc ~ df_census$citizenship,
         main = "gold standard \ncensus",
-        col = "goldenrod1", ylim = c(0,30000))
+        col = "goldenrod1", ylim = c(0,30000), xlab = "", ylab = "")
 abline(h = mean(df_census$household_inc), col = "red")
 abline(h = quantile(df_census$household_inc, 0.25), col = "red", lty = 2)
 abline(h = quantile(df_census$household_inc, 0.75), col = "red", lty = 2)
 boxplot(data_syn_simPop_best$household_inc ~ data_syn_simPop_best$citizenship,
         main = "simPop",
-        col = "darkolivegreen3", ylim = c(0,30000))
+        col = "darkolivegreen3", ylim = c(0,30000), xlab = "", ylab = "")
 abline(h = mean(df_census$household_inc), col = "red")
 abline(h = quantile(df_census$household_inc, 0.25), col = "red", lty = 2)
 abline(h = quantile(df_census$household_inc, 0.75), col = "red", lty = 2)
 boxplot(data_syn_MI$household_inc ~ data_syn_MI$citizenship,
         main = "MI",
-        col = "dodgerblue4", ylim = c(0,30000))
+        col = "dodgerblue4", ylim = c(0,30000), xlab = "", ylab = "")
 abline(h = mean(df_census$household_inc), col = "red")
 abline(h = quantile(df_census$household_inc, 0.25), col = "red", lty = 2)
 abline(h = quantile(df_census$household_inc, 0.75), col = "red", lty = 2)
 boxplot(data_syn_MI_conds$household_inc ~ data_syn_MI_conds$citizenship,
         main = "MI with conditions",
-        col = "dodgerblue3", ylim = c(0,30000))
+        col = "dodgerblue3", ylim = c(0,30000), xlab = "", ylab = "")
 abline(h = mean(df_census$household_inc), col = "red")
 abline(h = quantile(df_census$household_inc, 0.25), col = "red", lty = 2)
 abline(h = quantile(df_census$household_inc, 0.75), col = "red", lty = 2)
@@ -108,13 +108,13 @@ dev.off()
 
 # household structure
 max_hs <- which(df_census$household_size == max(df_census$household_size))
-hhindex <- df_census$household_id[49]
+hhindex <- df_census$household_id[2270]
 temp_data <- df_census[df_census$household_id == hhindex,]
 write.csv(temp_data, file = "household_census.csv")
 rm(hhindex, temp_data, max_hs)
 
 max_hs <- which(data_syn_simPop_best$hhsize == max(data_syn_simPop_best$hhsize))
-hhindex <- data_syn_simPop_best$household_id[49]
+hhindex <- data_syn_simPop_best$household_id[2495]
 temp_data <- data_syn_simPop_best[data_syn_simPop_best$household_id == hhindex,]
 write.csv(temp_data, file = "household_simPop.csv")
 rm(hhindex, temp_data, max_hs)
@@ -126,7 +126,7 @@ write.csv(temp_data, file = "household_MI.csv")
 rm(hhindex, temp_data, max_hs)
 
 max_hs <- which(data_syn_MI_conds$household_size == max(data_syn_MI_conds$household_size))
-hhindex <- data_syn_MI_conds$household_id[49]
+hhindex <- data_syn_MI_conds$household_id[2270]
 temp_data <- data_syn_MI_conds[data_syn_MI_conds$household_id == hhindex,]
 write.csv(temp_data, file = "household_MI_conds.csv")
 rm(hhindex, temp_data, max_hs)
