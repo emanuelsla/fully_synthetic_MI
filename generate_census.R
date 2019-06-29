@@ -19,7 +19,7 @@ eusilcP <- eusilcP %>%
     household_id = hid,
     household_size = hsize,
     household_inc = eqIncome,
-    employement = ecoStat
+    employment = ecoStat
   )
 
 df_census <- eusilcP
@@ -29,11 +29,17 @@ df_census$region <- factor(df_census$region, ordered = F)
 df_census$household_size <- as.integer(df_census$household_size)
 df_census$age <- as.integer(df_census$age)
 df_census$household_inc <- as.vector(df_census$household_inc)
-levels(df_census$employement) <- c("full_time", "part_time",
+levels(df_census$employment) <- c("full_time", "part_time",
                                    "unemployed", "schooling", 
                                    "retired", "disabled", "domestic")
 
 df_census <- df_census[df_census$household_id <= 1500,]
+for (id in (1:max(df_census$household_id))) {
+  num <- nrow(df_census[df_census$household_id == id,])
+  df_census$household_size[df_census$household_id == id] <- num
+  df_census$household_inc[df_census$household_id == id] <- (sum(df_census$household_inc[df_census$household_id == id]))/num
+}
+
 
 
 save(df_census, file = "df_census.RData")
