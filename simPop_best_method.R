@@ -53,7 +53,7 @@ for (i in (1:length(methods))) {
   print(paste(c("start with method ", methods[i]), 
               sep = "", collapse = ""))
   data_sim_temp <- simCategorical(simPopObj = data_sim,
-                                 additional = c("citizenship", "employement"),
+                                 additional = c("citizenship", "employment"),
                                  method = methods[i],
                                  verbose = T)
   storage[[methods[i]]] <- data_sim_temp@pop@data
@@ -64,32 +64,32 @@ for (i in (1:length(methods))) {
 # graphical evaluation
 cat_vars <- list()
 for (i in (1:length(storage))) {
-  cat_vars[[methods[i]]] <- storage[[i]][, c("citizenship", "employement")]
+  cat_vars[[methods[i]]] <- storage[[i]][, c("citizenship", "employment")]
   print(paste(c("cat_vars from method ", methods[i], " saved"), 
               sep = "", collapse = ""))
 }
 
-windows()
+jpeg(filename = "comparison_simCategorical.jpeg", quality = 100)
 par(mfrow=c(5,2))
 barplot(table(df_census$citizenship), 
         col = "dodgerblue4", main = "gold standard - citizenship")
-barplot(table(df_census$employement), 
-        col = "darkseagreen4", main = "gold standard - employement")
+barplot(table(df_census$employment), 
+        col = "darkseagreen4", main = "gold standard - employment")
 barplot(table(cat_vars$multinom$citizenship), 
         col = "lightblue", main = "multinom")
-barplot(table(cat_vars$multinom$employement), 
+barplot(table(cat_vars$multinom$employment), 
         col = "darkseagreen1", main = "multinom")
 barplot(table(cat_vars$distribution$citizenship), 
         col = "lightblue", main = "distribution")
-barplot(table(cat_vars$distribution$employement), 
+barplot(table(cat_vars$distribution$employment), 
         col = "darkseagreen1", main = "distribution")
 barplot(table(cat_vars$ctree$citizenship), 
         col = "lightblue", main = "ctree")
-barplot(table(cat_vars$ctree$employement), 
+barplot(table(cat_vars$ctree$employment), 
         col = "darkseagreen1", main = "ctree")
 barplot(table(cat_vars$cforest$citizenship), 
         col = "lightblue", main = "cforest")
-barplot(table(cat_vars$cforest$employement), 
+barplot(table(cat_vars$cforest$employment), 
         col = "darkseagreen1", main = "cforest")
 dev.off()
 
@@ -99,7 +99,7 @@ dev.off()
 # Therfore we use the s4-object created with multinom in the following.
 
 data_sim <- simCategorical(simPopObj = data_sim,
-               additional = c("citizenship", "employement"),
+               additional = c("citizenship", "employment"),
                method = "multinom",
                verbose = F)
 
@@ -138,7 +138,7 @@ for (i in (1:length(storage))) {
               sep = "", collapse = ""))
 }
 
-windows()
+jpeg(filename = "comparison_simContinuous.jpeg", quality = 100)
 par(mfrow=c(1,3))
 boxplot(df_census$household_inc, col = "tan1",
         main = "gold standard - househ. income",
@@ -178,7 +178,7 @@ inp <- specifyInput(df_census, hhid = "household_id",
 data_sim <- simStructure(dataS = inp, method = "distribution",
                          basicHHvars = c("gender", "age"))
 data_sim <- simCategorical(simPopObj = data_sim,
-                           additional = c("citizenship", "employement"),
+                           additional = c("citizenship", "employment"),
                            method = "multinom",
                            verbose = F)
 data_sim <- simContinuous(simPopObj = data_sim,
