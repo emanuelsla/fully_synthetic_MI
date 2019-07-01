@@ -35,7 +35,7 @@ inp <- specifyInput(df_census, hhid = "household_id",
                     strata = "region", population = F,
                     weight = "weight") 
 
-data_sim <- simStructure(dataS = inp, method = "distribution",
+data_sim <- simStructure(dataS = inp, method = "direct",
                          basicHHvars = c("gender", "age"))
 
 
