@@ -71,6 +71,25 @@ mtext("household income \nred: overall mean of household income",
       side = 3, line = -21, outer = TRUE)
 dev.off()
 
+jpeg("univariate_continuous_comp_2", quality = 100)
+par(mfrow=c(2,2))
+hist(df_census$household_inc, freq = F, col = "goldenrod1", main = "gold standard \ncensus",
+     xlab = "", ylab = "", ylim = c(0,0.0001), xlim = c(0, 100000))
+lines(density(df_census$household_inc))
+hist(data_syn_simPop_best$household_inc, freq = F, col = "darkolivegreen3", main = "simPop",
+     xlab = "", ylab = "", ylim = c(0,0.0001), xlim = c(0, 100000))
+lines(density(data_syn_simPop_best$household_inc))
+hist(data_syn_MI$household_inc, freq = F, col = "dodgerblue4", main = "MI",
+     xlab = "", ylab = "", ylim = c(0,0.0001), xlim = c(0, 100000))
+lines(density(data_syn_MI$household_inc))
+hist(data_syn_MI_conds$household_inc, freq = F, col = "dodgerblue3", main = "MI with conditions",
+     xlab = "", ylab = "", ylim = c(0,0.0001), xlim = c(0, 100000))
+lines(density(data_syn_MI_conds$household_inc))
+mtext("density of household income", 
+      side = 3, line = -21, outer = TRUE)
+dev.off()
+
+
 
 # bivariate correlation
 jpeg(filename = "multivariate_comp.jpeg", quality = 100)
