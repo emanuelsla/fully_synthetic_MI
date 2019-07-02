@@ -36,3 +36,7 @@ additional conditions.
 
 At least we apply the script "result_evaluation.R" to generate
 the outputs, which can be found in the equally called folder.
+The file "EvalDataUtility.R" generates numerical figures.
+
+The whole research process is stated in the presentation
+"fully_synthetic_MI_vs_simPop.pdf".
