@@ -4,7 +4,7 @@ the fully synthetic MI algorithm in comparison to the R-package simPop.*
 ---
 
 
-# Content:
+## Content:
 
 - The file "synthesis.RData" is the saved fully synthetic MI algorithm,
 which is constructed and trained like in the folder 
