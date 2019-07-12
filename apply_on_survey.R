@@ -1,6 +1,6 @@
 # Basics ------------------------------------------------------------------
 rm(list = ls())
-setwd("~/fully_synthetic_MI")
+setwd("") # enter working directory here
 
 
 # Recode the survey -------------------------------------------------------
