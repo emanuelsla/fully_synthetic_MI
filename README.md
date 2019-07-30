@@ -3,6 +3,9 @@ This is because it is a additional research project in order to evaluate
 the fully synthetic MI algorithm in comparison to the R-package simPop.*
 ---
 
+# Comparing fully synthetic Multiple Imputation with simPop
+The content of this repository was created in order to thorougly compare two different methods of creating fully synthetic data, namely data generation via Multiple Imputation and simPop. All parts that are necessary for this task can be found in this repo. Below you will find a brief discription of the individual scripts and their respectiv functionality. 
+For a comprehensive overview of our findings please refer to "PAPERNAME.pdf"
 
 ## Content:
 
@@ -35,9 +38,12 @@ the folder "output".
 This is the fully synthetic MI algortihms without and with
 additional conditions.
 
-- At least we apply the script "result_evaluation.R" to generate
+- For the last step we apply the script "result_evaluation.R" to generate
 the outputs, which can be found in the equally called folder.
 The file "EvalDataUtility.R" generates numerical figures.
 
+- Additionaly we applied both algorithms to Survey data (from the dataset eusilicS) for which fhe  "apply_on_survey.R" file was used. 
+
 - The whole research process is stated in the presentation
 "fully_synthetic_MI_vs_simPop.pdf".
+
