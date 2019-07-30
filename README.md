@@ -6,8 +6,8 @@ the fully synthetic MI algorithm in comparison to the R-package simPop.*
 
 
 # Comparing fully synthetic Multiple Imputation with simPop
-The content of this repository was created in order to thorougly compare two different methods of creating fully synthetic data, namely data generation via Multiple Imputation and simPop. All parts that are necessary for this task can be found in this repo. Below you will find a brief discription of the individual scripts and their respectiv functionality. 
-For a comprehensive overview of our findings please refer to "PAPERNAME.pdf"
+The content of this repository was created in order to thorougly compare two different methods of creating fully synthetic data, namely data generation via Multiple Imputation and simPop. All parts that are necessary for this task can be found in this repo. Below you will find a brief discription of the individual scripts and their respective functionality. 
+For a comprehensive overview of our findings please refer to "fully_synthetic_MI_vs_simPop_paper.pdf".
 
 ## Content:
 
@@ -18,7 +18,7 @@ For a pseudo code of the fully synthetic MI algorithm please see
 the "README.md" in master.
 
 - With the file "generate_census.R" a fictive census based on the
-eusilc data is created. This is due to the reason that the fully
+eusilcP data is created. This is due to the reason that the fully
 synthetic MI algorithm cannot handle weights yet. So we seeked for
 a procedure to compare census data with the simPop results.
 We create the fictive census "df_census.RData".
@@ -44,8 +44,8 @@ additional conditions.
 the outputs, which can be found in the equally called folder.
 The file "EvalDataUtility.R" generates numerical figures.
 
-- Additionaly we applied both algorithms to Survey data (from the dataset eusilicS) for which the  "apply_on_survey.R" file was used. 
+- Additionaly we applied both algorithms to survey data (from the dataset eusilicS) for which the  "apply_on_survey.R" file was used. 
 
-- The whole research process is stated in the presentation
-"fully_synthetic_MI_vs_simPop.pdf".
+- The whole research process (except the survey implementation) is stated in the presentation
+"fully_synthetic_MI_vs_simPop_presentation.pdf".
 
