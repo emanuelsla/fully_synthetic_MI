@@ -1,42 +1,15 @@
-# fully_synthetic_MI
+# Fully synthetic Multiple Imputation
 
-pseudo code for algorithm fully synthetic MI
+This method goes back to Drechsler and Reiter 2010 "Sampling with Synthesis: A New Approach for Releasing Public Use Census Microdata".
 
-define function synthesis with inputs: dataset, desired repetitions, condition vector, list option, minsplit, minbucket, mindev and mincut{
-	create storage for results in list structure
-	for all desired repetitions {
-		start with second variable
-		while variable position  <= variables in dataset {
-			if numeric variable {
-				run numeric regression tree
-				insert buckets
-				for all buckets {
-					run a bootstrap
-					save temporary results
-				}
-			} else if factor variable {
-				run factor regression tree
-				insert buckets
-				for all buckets {
-					run a bootstrap
-					save temporary results
-				}	
-			} else return error variable coding
-			save bootstrapped variable in dataset
-			go to next variable
-		}
-		if no conditions {
-			next
-		} else {for all conditions {
-				apply them to recent dataframe
-			}
-		}
-	}
-	if list option {
-		return synthetic data in list structure
-	} else if first datframe option {
-		return first dataframe
-	} else if sample option {
-		return sample of all dataframes with inital length
-	}
-}
+It originally covers partially synthetic Multiple Imputation, but was developed to an fully synthetic approach. 
+
+It iterates over the whole dataset and uses the concept of Multiple Imputation to generate values, which match the properties of the original data but do not contain sensitive information.
+
+This branch includes
+* the algorithm "fully_synthetic_MI_algorithm.R",
+* a pseudo code "pseudo_code_fully_synthetic_MI.txt" and
+* the self-constructed, ALLBUS based training data "data_census.RData"
+
+It is implemented with R.
+
